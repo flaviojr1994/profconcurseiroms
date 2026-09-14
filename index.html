@@ -9,10 +9,10 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Playfair Display, Plus Jakarta Sans e Caveat (para os Doodles Manuscritos da Imagem) -->
+  <!-- Google Fonts: Playfair Display e Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -34,8 +34,7 @@
           },
           fontFamily: {
             serif: ['"Playfair Display"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            hand: ['"Caveat"', 'cursive']
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
           }
         }
       }
@@ -43,35 +42,6 @@
   </script>
 
   <style>
-    /* Moldura em arco inspirada exatamente no design visual da Hero */
-    .arch-frame {
-      border-top-left-radius: 9999px;
-      border-top-right-radius: 9999px;
-      overflow: hidden;
-    }
-    
-    /* Formatos de cápsula e pílula inspirados na referência de design */
-    .capsule-full {
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-
-    .capsule-top {
-      border-top-left-radius: 9999px;
-      border-top-right-radius: 9999px;
-      border-bottom-left-radius: 40px;
-      border-bottom-right-radius: 40px;
-      overflow: hidden;
-    }
-
-    .capsule-bottom {
-      border-bottom-left-radius: 9999px;
-      border-bottom-right-radius: 9999px;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
-      overflow: hidden;
-    }
-    
     /* Botões em formato de pílula autênticos */
     .pill-btn {
       border-radius: 9999px;
@@ -85,14 +55,9 @@
 
     /* Pulso contínuo para o botão flutuante de atendimento */
     @keyframes pulse-wpp {
-      0%, 100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
-      }
-      50% {
-        box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
-      }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
     }
-    
     .whatsapp-glow {
       animation: pulse-wpp 2s infinite;
     }
@@ -104,12 +69,10 @@
       transition: max-height 0.35s ease-out, opacity 0.3s ease-out;
       opacity: 0;
     }
-
     .faq-card.open .faq-content {
       max-height: 250px;
       opacity: 1;
     }
-
     .faq-card.open .faq-chevron {
       transform: rotate(180deg);
     }
@@ -142,7 +105,7 @@
         <a href="#faq" class="hover:text-brand-royalBlue transition">Dúvidas</a>
       </nav>
 
-      <!-- Botão WhatsApp Header no estilo pill outline da referência -->
+      <!-- Botão WhatsApp Header -->
       <a href="https://wa.me/5567993213682?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20e-books%20para%20o%20concurso%20SED-MS." 
          target="_blank" 
          rel="noopener noreferrer"
@@ -153,48 +116,70 @@
     </div>
   </header>
 
-  <!-- SEÇÃO 1: HERO SECTION COM A IMAGEM EXATA FORNECIDA -->
-  <section class="relative w-full bg-white py-4 sm:py-8 overflow-hidden border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative">
-      
-      <!-- Imagem Hero Exata sem alterações -->
-      <div class="w-full flex justify-center items-center relative group">
-        <img id="hero-img" 
-             src="hero-professor-concurseiro.png" 
-             alt="Professor Concurseiro MS" 
-             class="w-full max-w-6xl h-auto object-contain mx-auto select-none rounded-2xl transition"
-             onerror="handleHeroImageError(this)">
-             
-        <!-- Botão sutil para alterar a imagem mesmo depois de salva -->
-        <div id="hero-change-btn" class="hidden absolute top-4 right-4 z-20">
-          <label class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/90 hover:bg-white text-gray-700 hover:text-brand-royalBlue text-xs font-bold rounded-full shadow-md border border-gray-200 cursor-pointer backdrop-blur transition">
-            <i class="fas fa-camera text-brand-emerald"></i>
-            <span>Trocar Imagem</span>
-            <input type="file" accept="image/*" class="hidden" onchange="handleHeroUpload(event)">
-          </label>
-        </div>
-      </div>
-
-      <!-- Caixa de Carregamento e Persistência da Imagem -->
-      <div id="hero-upload-helper" class="mt-4 text-center max-w-md mx-auto p-4 bg-blue-50/70 border border-blue-200/80 rounded-2xl">
-        <div class="flex flex-col items-center gap-2">
-          <label class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-royalBlue hover:bg-brand-darkBlue text-white text-xs sm:text-sm font-bold rounded-full cursor-pointer shadow-md transition transform hover:scale-105">
-            <i class="fas fa-cloud-upload-alt text-base"></i>
-            <span>Clique aqui para carregar e salvar sua imagem</span>
-            <input type="file" accept="image/*" class="hidden" onchange="handleHeroUpload(event)">
-          </label>
-          <p class="text-[11px] text-gray-500 leading-snug">
-            Sua imagem ficará <strong>salva permanentemente</strong> neste navegador e não sumirá ao atualizar a página.
+  <!-- SEÇÃO 1: HERO SECTION - Limpa, Temática de Estudos e Harmoniosa -->
+  <section class="relative w-full bg-gradient-to-b from-slate-50 to-white py-14 lg:py-20 overflow-hidden border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Lado Esquerdo: Textos e Direcionamento -->
+        <div class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+          
+          <!-- Badge de Atualização -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-lightGreen text-brand-darkEmerald text-xs font-bold uppercase tracking-wider border border-brand-emerald/20 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-brand-whatsapp animate-pulse"></span>
+            Concurso Autorizado • 2.000 Vagas
+          </div>
+          
+          <!-- Título Principal -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-black text-brand-darkBlue leading-[1.15] tracking-tight">
+            Sua aprovação na <span class="text-brand-emerald">SED-MS</span> começa com o material certo.
+          </h1>
+          
+          <!-- Subtítulo -->
+          <p class="text-gray-600 text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed">
+            Domine a legislação, o ECA, FUNDEB e o Currículo de Referência de Mato Grosso do Sul com e-books <strong>100% esquematizados</strong> para a rotina corrida do professor.
           </p>
+          
+          <!-- Botões de Ação -->
+          <div class="flex flex-col sm:flex-row gap-4 w-full justify-center lg:justify-start pt-2">
+            <a href="#combo" class="px-8 py-3.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white font-extrabold text-sm pill-btn shadow-xl shadow-emerald-700/20 text-center flex items-center justify-center gap-2">
+              <i class="fas fa-gift text-lg"></i> Quero o Combo Completo
+            </a>
+            <a href="#ebooks" class="px-8 py-3.5 bg-white border-2 border-brand-royalBlue text-brand-royalBlue hover:bg-blue-50 font-bold text-sm pill-btn text-center flex items-center justify-center transition-colors">
+              Ver Temas Avulsos
+            </a>
+          </div>
+          
+          <!-- Prova de Foco Estadual -->
+          <div class="pt-6 flex items-center gap-3 border-t border-slate-200 w-full max-w-sm justify-center lg:justify-start mt-4">
+            <div class="flex -space-x-2">
+              <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center border-2 border-white text-brand-royalBlue text-xs shadow-sm"><i class="fas fa-book"></i></div>
+              <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center border-2 border-white text-brand-emerald text-xs shadow-sm"><i class="fas fa-gavel"></i></div>
+              <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center border-2 border-white text-amber-600 text-xs shadow-sm"><i class="fas fa-chalkboard-teacher"></i></div>
+            </div>
+            <div class="text-xs text-gray-500 text-left leading-tight">
+              Conteúdo elaborado com foco no<br><strong class="text-brand-royalBlue">edital estadual de MS.</strong>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- Feedback de Salvamento -->
-      <div id="save-toast" class="fixed bottom-24 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300 bg-gray-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2">
-        <i class="fas fa-check-circle text-brand-emerald text-base"></i>
-        <span>Imagem salva com sucesso!</span>
-      </div>
+        <!-- Lado Direito: Imagem Harmônica de Estudos (Notebook, Caderno e Caneta) -->
+        <div class="relative w-full flex justify-center items-center mt-6 lg:mt-0 px-2 sm:px-0">
+          <div class="absolute inset-0 bg-brand-lightGreen rounded-full mix-blend-multiply filter blur-3xl opacity-60 z-0 scale-95"></div>
+          
+          <div class="relative z-10 w-full max-w-lg transform transition-transform hover:-translate-y-1 duration-300">
+            <div class="rounded-3xl border-4 border-white shadow-2xl overflow-hidden bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" 
+                   alt="Mesa de estudos organizada com notebook, caderno de anotações e caneta" 
+                   class="w-full h-[380px] sm:h-[420px] object-cover object-center">
+            </div>
+            
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-royalBlue rounded-full mix-blend-multiply filter blur-2xl opacity-20 -z-10"></div>
+            <div class="absolute -top-6 -right-6 w-32 h-32 bg-brand-emerald rounded-full mix-blend-multiply filter blur-2xl opacity-20 -z-10"></div>
+          </div>
+        </div>
 
+      </div>
     </div>
   </section>
 
@@ -211,12 +196,10 @@
       <!-- Grid das 4 Etapas -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
         
-        <!-- Fase 1: Autorizado (Concluído) -->
+        <!-- Fase 1: Autorizado -->
         <div class="bg-white p-5 rounded-2xl border-2 border-brand-emerald shadow-sm relative overflow-hidden">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-extrabold uppercase px-2.5 py-1 rounded-full bg-emerald-100 text-brand-darkEmerald">
-              Fase 1 • Concluído
-            </span>
+            <span class="text-xs font-extrabold uppercase px-2.5 py-1 rounded-full bg-emerald-100 text-brand-darkEmerald">Fase 1 • Concluído</span>
             <i class="fas fa-check-circle text-brand-emerald text-xl"></i>
           </div>
           <h3 class="font-bold text-gray-900 text-base">Autorização Oficial</h3>
@@ -225,12 +208,10 @@
           </p>
         </div>
 
-        <!-- Fase 2: Comissão (Próxima) -->
+        <!-- Fase 2: Comissão -->
         <div class="bg-white p-5 rounded-2xl border border-blue-200 shadow-sm relative">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-blue-50 text-brand-royalBlue">
-              Fase 2 • Em Breve
-            </span>
+            <span class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-blue-50 text-brand-royalBlue">Fase 2 • Em Breve</span>
             <i class="fas fa-users-cog text-brand-royalBlue/70 text-lg"></i>
           </div>
           <h3 class="font-bold text-gray-900 text-base">Comissão Organizadora</h3>
@@ -242,9 +223,7 @@
         <!-- Fase 3: Banca -->
         <div class="bg-white/90 p-5 rounded-2xl border border-gray-200 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
-              Fase 3 • Em Breve
-            </span>
+            <span class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">Fase 3 • Em Breve</span>
             <i class="fas fa-file-contract text-gray-400 text-lg"></i>
           </div>
           <h3 class="font-bold text-gray-800 text-base">Escolha da Banca</h3>
@@ -256,9 +235,7 @@
         <!-- Fase 4: Edital -->
         <div class="bg-white/90 p-5 rounded-2xl border border-gray-200 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
-              Fase 4 • Em Breve
-            </span>
+            <span class="text-xs font-bold uppercase px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">Fase 4 • Em Breve</span>
             <i class="fas fa-newspaper text-gray-400 text-lg"></i>
           </div>
           <h3 class="font-bold text-gray-800 text-base">Publicação do Edital</h3>
@@ -266,10 +243,9 @@
             Lançamento do documento oficial com regras, cronograma de inscrições e datas de prova no DOE-MS.
           </p>
         </div>
-
       </div>
 
-      <!-- Alerta de Antecipação dos Estudos -->
+      <!-- Alerta de Antecipação -->
       <div class="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-3 text-left">
           <div class="w-10 h-10 rounded-full bg-brand-royalBlue text-white flex items-center justify-center flex-shrink-0">
@@ -283,7 +259,6 @@
           Começar Agora
         </a>
       </div>
-
     </div>
   </section>
 
@@ -298,8 +273,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Dor 1 -->
         <div class="bg-slate-50 p-7 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
           <div class="w-12 h-12 rounded-2xl bg-blue-100 text-brand-royalBlue flex items-center justify-center text-xl mb-5">
             <i class="fas fa-clock"></i>
@@ -310,18 +283,16 @@
           </p>
         </div>
 
-        <!-- Dor 2 -->
         <div class="bg-slate-50 p-7 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
           <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-brand-emerald flex items-center justify-center text-xl mb-5">
             <i class="fas fa-map-marked-alt"></i>
           </div>
           <h3 class="font-bold text-gray-900 text-lg mb-2">Materiais Genéricos Nacionais</h3>
           <p class="text-sm text-gray-600 leading-relaxed">
-            Grandes cursinhos ignoram o Currículo de Referência do MS e o Programa Raças e Etnias do MS, tópicos recorrentes na SED-MS.
+            Grandes cursinhos ignoram o Currículo de Referência do MS e o PRO-ERER-MS, tópicos fundamentais e recorrentes na SED-MS.
           </p>
         </div>
 
-        <!-- Dor 3 -->
         <div class="bg-slate-50 p-7 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
           <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl mb-5">
             <i class="fas fa-brain"></i>
@@ -331,9 +302,7 @@
             Artigos do ECA, FUNDEB e BNCC são cobrados com detalhes e pegadinhas literais das bancas examinadoras que exigem resumos visuais.
           </p>
         </div>
-
       </div>
-
     </div>
   </section>
 
@@ -342,22 +311,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <!-- Imagem de Apoio com Mockup Visual -->
+        <!-- Imagem de Apoio -->
         <div class="lg:col-span-5">
           <div class="relative max-w-md mx-auto">
             <div class="rounded-3xl border-4 border-white shadow-xl overflow-hidden bg-brand-royalBlue">
               <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" 
-                   alt="Professora concurseira parda estudando e revisando conteúdos da SED-MS" 
-                   class="w-full h-84 sm:h-96 object-cover object-top opacity-95 transition duration-300 hover:scale-105"
-                   onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'">
-              <div class="p-6 text-white">
+                   alt="Professora estudando com tranquilidade" 
+                   class="w-full h-84 sm:h-96 object-cover object-top opacity-95 transition duration-300 hover:scale-105">
+              <div class="p-6 text-white bg-brand-royalBlue">
                 <span class="text-xs uppercase tracking-widest text-emerald-300 font-bold">Professor Concurseiro MS</span>
                 <h4 class="font-serif text-xl font-bold mt-1">Materiais 100% Digitais e Práticos</h4>
-                <p class="text-xs text-blue-100 mt-2">Elaborados por quem vivencia os desafios reais da docência e o caminho da aprovação pública.</p>
+                <p class="text-xs text-blue-100 mt-2">Elaborados por quem vivencia os desafios da docência.</p>
               </div>
             </div>
             
-            <!-- Badge Flutuante de Confiança -->
             <div class="absolute -bottom-5 -right-3 bg-brand-emerald text-white p-4 rounded-2xl shadow-lg flex items-center gap-3">
               <i class="fas fa-book-reader text-2xl"></i>
               <div>
@@ -375,96 +342,59 @@
             Feito por quem conhece a rotina da sala de aula e a realidade dos concursos.
           </h2>
           <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
-            Sabemos que a rotina do professor é intensa. Encontrar tempo para estudar centenas de páginas de PDFs genéricos é quase impossível. Nossos e-books foram desenvolvidos para otimizar o seu tempo, organizando os principais marcos legais e pedagógicos em formatos sintéticos, diretos ao ponto e com esquemas visuais prontos para revisão.
+            Nossos e-books foram desenvolvidos para otimizar o seu tempo, organizando os principais marcos legais e pedagógicos em formatos sintéticos, diretos ao ponto e com esquemas visuais prontos para revisão.
           </p>
 
-          <!-- 4 Diferenciais em Grade -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-            
             <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-full bg-emerald-100 text-brand-emerald flex items-center justify-center flex-shrink-0 mt-0.5">
-                <i class="fas fa-map-marker-alt text-sm"></i>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-emerald-100 text-brand-emerald flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-map-marker-alt text-sm"></i></div>
               <div>
                 <h4 class="font-bold text-gray-900 text-sm">Foco Regional em MS</h4>
-                <p class="text-xs text-gray-500 mt-0.5">Legislação e marcos curriculares específicos de Mato Grosso do Sul.</p>
+                <p class="text-xs text-gray-500 mt-0.5">Legislação e marcos curriculares específicos do Estado.</p>
               </div>
             </div>
-
             <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-full bg-blue-100 text-brand-royalBlue flex items-center justify-center flex-shrink-0 mt-0.5">
-                <i class="fas fa-project-diagram text-sm"></i>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-blue-100 text-brand-royalBlue flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-project-diagram text-sm"></i></div>
               <div>
                 <h4 class="font-bold text-gray-900 text-sm">Linguagem Esquematizada</h4>
-                <p class="text-xs text-gray-500 mt-0.5">Tabelas comparativas e mapas mentais para fixar a lei seca.</p>
+                <p class="text-xs text-gray-500 mt-0.5">Tabelas comparativas e resumos práticos.</p>
               </div>
             </div>
-
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-full bg-blue-100 text-brand-royalBlue flex items-center justify-center flex-shrink-0 mt-0.5">
-                <i class="fas fa-mobile-alt text-sm"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-gray-900 text-sm">Leitura Rápida e Leve</h4>
-                <p class="text-xs text-gray-500 mt-0.5">PDFs práticos para estudar nos intervalos de aula pelo celular.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-full bg-emerald-100 text-brand-emerald flex items-center justify-center flex-shrink-0 mt-0.5">
-                <i class="fas fa-print text-sm"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-gray-900 text-sm">Pronto para Impressão</h4>
-                <p class="text-xs text-gray-500 mt-0.5">Formato diagramado para ler em tela ou imprimir em papel A4.</p>
-              </div>
-            </div>
-
           </div>
 
-          <!-- Botão Falar com o Autor -->
           <div class="pt-4">
-            <a href="https://wa.me/5567993213682?text=Ol%C3%A1!%20Estou%20no%20site%20e%20gostaria%20de%20falar%20com%20o%20autor." 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-emerald text-brand-emerald hover:bg-emerald-50 text-sm font-bold pill-btn">
+            <a href="https://wa.me/5567993213682?text=Ol%C3%A1!%20Estou%20no%20site%20e%20gostaria%20de%20falar%20com%20o%20autor." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-emerald text-brand-emerald hover:bg-emerald-50 text-sm font-bold pill-btn">
               <i class="fab fa-whatsapp text-lg"></i>
               <span>Falar com o Autor no WhatsApp</span>
             </a>
           </div>
-
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- SEÇÃO 5: CATÁLOGO DE E-BOOKS INDIVIDUAIS (R$ 11,90 CADA) -->
+  <!-- SEÇÃO 5: CATÁLOGO DE E-BOOKS INDIVIDUAIS COM LINKS REAIS KIWIFY -->
   <section id="ebooks" class="py-16 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-12">
         <span class="text-brand-emerald font-bold text-xs uppercase tracking-widest">Catálogo de Temas</span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-royalBlue mt-1">E-books Individuais</h2>
-        <p class="text-gray-600 text-sm sm:text-base mt-2">
-          Precisa reforçar apenas uma disciplina específica? Escolha o e-book avulso por apenas <strong>R$ 11,90</strong> com download imediato via Kiwify.
-        </p>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-royalBlue mt-1">E-BOOKS Individuais</h2>
+        <p class="text-gray-600 text-sm sm:text-base mt-2">Escolha o e-book avulso por apenas <strong>R$ 11,90</strong> com download imediato via Kiwify.</p>
       </div>
 
-      <!-- Grid com os 6 E-books -->
+      <!-- Grid Ebooks com links reais da Kiwify -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Ebook 1: BNCC -->
+        
+        <!-- Ebook 1: BNCC, Legislação e Currículo Regional -->
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between border-t-4 border-t-brand-royalBlue">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-royalBlue flex items-center justify-center text-xl mb-4 font-bold">
-              <i class="fas fa-book-open"></i>
-            </div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-royalBlue flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-book-open"></i></div>
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-royalBlue">Tema 01</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">BNCC e Marcos Curriculares</h3>
+            <h3 class="text-lg font-bold text-gray-900 mt-1">BNCC, Legislação e Currículo Regional</h3>
             <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-              Resumo estratégico dos conceitos pedagógicos, competências gerais da Educação Básica e diretrizes essenciais mais cobradas em provas.
+              Resumo estratégico dos conceitos pedagógicos, competências gerais e diretrizes essenciais mais cobradas em provas de MS.
             </p>
           </div>
           <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
@@ -472,24 +402,18 @@
               <span class="text-[11px] text-gray-400 block">Valor avulso</span>
               <span class="text-xl font-extrabold text-brand-royalBlue">R$ 11,90</span>
             </div>
-            <a href="https://pay.kiwify.com.br/SEU_LINK_BNCC" 
-               target="_blank"
-               class="px-4 py-2.5 bg-brand-royalBlue hover:bg-brand-darkBlue text-white text-xs font-bold pill-btn">
-              Comprar E-book
-            </a>
+            <a href="https://pay.kiwify.com.br/lTEF0GH" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-brand-royalBlue hover:bg-brand-darkBlue text-white text-xs font-bold pill-btn">Comprar E-book</a>
           </div>
         </div>
 
         <!-- Ebook 2: FUNDEB -->
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between border-t-4 border-t-brand-emerald">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-brand-emerald flex items-center justify-center text-xl mb-4 font-bold">
-              <i class="fas fa-coins"></i>
-            </div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-brand-emerald flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-coins"></i></div>
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-emerald">Tema 02</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">FUNDEB</h3>
+            <h3 class="text-lg font-bold text-gray-900 mt-1">FUNDEB - O Novo FUNDEB</h3>
             <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-              Legislação mastigada do novo FUNDEB, fontes de financiamento, repasses, valorização dos profissionais da educação e pegadinhas da banca.
+              Legislação mastigada do financiamento da educação, fontes de repasses, valorização do magistério e pegadinhas da banca.
             </p>
           </div>
           <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
@@ -497,24 +421,18 @@
               <span class="text-[11px] text-gray-400 block">Valor avulso</span>
               <span class="text-xl font-extrabold text-brand-emerald">R$ 11,90</span>
             </div>
-            <a href="https://pay.kiwify.com.br/SEU_LINK_FUNDEB" 
-               target="_blank"
-               class="px-4 py-2.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white text-xs font-bold pill-btn">
-              Comprar E-book
-            </a>
+            <a href="https://pay.kiwify.com.br/NYCATo3" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white text-xs font-bold pill-btn">Comprar E-book</a>
           </div>
         </div>
 
         <!-- Ebook 3: ECA -->
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between border-t-4 border-t-brand-royalBlue">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-royalBlue flex items-center justify-center text-xl mb-4 font-bold">
-              <i class="fas fa-child"></i>
-            </div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-royalBlue flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-child"></i></div>
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-royalBlue">Tema 03</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">ECA (Estatuto da Criança)</h3>
+            <h3 class="text-lg font-bold text-gray-900 mt-1">ECA (Estatuto da Criança e do Adolescente)</h3>
             <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-              Foco nos artigos de maior recorrência educacional: direito à educação, dever do Estado e atuação dos professores e conselho tutelar.
+              Foco nos artigos de maior incidência educacional: direito à educação, dever do Estado e atuação protetiva dos professores.
             </p>
           </div>
           <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
@@ -522,24 +440,18 @@
               <span class="text-[11px] text-gray-400 block">Valor avulso</span>
               <span class="text-xl font-extrabold text-brand-royalBlue">R$ 11,90</span>
             </div>
-            <a href="https://pay.kiwify.com.br/SEU_LINK_ECA" 
-               target="_blank"
-               class="px-4 py-2.5 bg-brand-royalBlue hover:bg-brand-darkBlue text-white text-xs font-bold pill-btn">
-              Comprar E-book
-            </a>
+            <a href="https://pay.kiwify.com.br/RnlkSzf" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-brand-royalBlue hover:bg-brand-darkBlue text-white text-xs font-bold pill-btn">Comprar E-book</a>
           </div>
         </div>
 
-        <!-- Ebook 4: Raças e Etnias MS -->
+        <!-- Ebook 4: Educação Étnico-Racial e PRO-ERER-MS -->
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between border-t-4 border-t-brand-emerald">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-brand-emerald flex items-center justify-center text-xl mb-4 font-bold">
-              <i class="fas fa-users"></i>
-            </div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-brand-emerald flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-users"></i></div>
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-emerald">Tema 04 • Regional MS</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">Programa Raças e Etnias do MS</h3>
+            <h3 class="text-lg font-bold text-gray-900 mt-1">Educação Étnico-Racial e PRO-ERER-MS</h3>
             <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-              Conteúdo específico de Mato Grosso do Sul: diretrizes para a diversidade racial e indígena nas escolas estaduais da SED-MS.
+              Conteúdo específico de Mato Grosso do Sul: diretrizes para as relações étnico-raciais e diversidade indígena na rede SED-MS.
             </p>
           </div>
           <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
@@ -547,24 +459,18 @@
               <span class="text-[11px] text-gray-400 block">Valor avulso</span>
               <span class="text-xl font-extrabold text-brand-emerald">R$ 11,90</span>
             </div>
-            <a href="https://pay.kiwify.com.br/SEU_LINK_RACAS_ETNIAS_MS" 
-               target="_blank"
-               class="px-4 py-2.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white text-xs font-bold pill-btn">
-              Comprar E-book
-            </a>
+            <a href="https://pay.kiwify.com.br/Uz0dllT" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white text-xs font-bold pill-btn">Comprar E-book</a>
           </div>
         </div>
 
-        <!-- Ebook 5: Currículo de MS -->
+        <!-- Ebook 5: Currículo de Referência MS -->
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between border-t-4 border-t-brand-royalBlue">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-royalBlue flex items-center justify-center text-xl mb-4 font-bold">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-royalBlue flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-graduation-cap"></i></div>
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-royalBlue">Tema 05 • Regional MS</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-1">Currículo de Referência do MS</h3>
+            <h3 class="text-lg font-bold text-gray-900 mt-1">Currículo de Referência de MS</h3>
             <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-              Documento curricular oficial do estado: princípios orientadores, organização por etapas e competências prioritárias cobradas no edital.
+              Documento curricular oficial do estado: princípios orientadores, etapas e competências prioritárias exigidas no edital.
             </p>
           </div>
           <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
@@ -572,24 +478,18 @@
               <span class="text-[11px] text-gray-400 block">Valor avulso</span>
               <span class="text-xl font-extrabold text-brand-royalBlue">R$ 11,90</span>
             </div>
-            <a href="https://pay.kiwify.com.br/SEU_LINK_CURRICULO_MS" 
-               target="_blank"
-               class="px-4 py-2.5 bg-brand-royalBlue hover:bg-brand-darkBlue text-white text-xs font-bold pill-btn">
-              Comprar E-book
-            </a>
+            <a href="https://pay.kiwify.com.br/s098ddo" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-brand-royalBlue hover:bg-brand-darkBlue text-white text-xs font-bold pill-btn">Comprar E-book</a>
           </div>
         </div>
 
         <!-- Ebook 6: PNE e PEE-MS -->
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between border-t-4 border-t-brand-emerald">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-brand-emerald flex items-center justify-center text-xl mb-4 font-bold">
-              <i class="fas fa-clipboard-list"></i>
-            </div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-brand-emerald flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-clipboard-list"></i></div>
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-emerald">Tema 06</span>
             <h3 class="text-lg font-bold text-gray-900 mt-1">PNE e PEE (Planos de Educação)</h3>
             <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-              Comparativo detalhado das metas do Plano Nacional de Educação e as diretrizes estaduais do Plano Estadual de Educação de MS.
+              Comparativo detalhado das metas do Plano Nacional de Educação e diretrizes do Plano Estadual de Educação de MS.
             </p>
           </div>
           <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
@@ -597,50 +497,41 @@
               <span class="text-[11px] text-gray-400 block">Valor avulso</span>
               <span class="text-xl font-extrabold text-brand-emerald">R$ 11,90</span>
             </div>
-            <a href="https://pay.kiwify.com.br/SEU_LINK_PNE_PEE" 
-               target="_blank"
-               class="px-4 py-2.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white text-xs font-bold pill-btn">
-              Comprar E-book
-            </a>
+            <a href="https://pay.kiwify.com.br/ADR2ZED" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-brand-emerald hover:bg-brand-darkEmerald text-white text-xs font-bold pill-btn">Comprar E-book</a>
           </div>
         </div>
 
       </div>
-
     </div>
   </section>
 
-  <!-- SEÇÃO 6: OFERTA DO COMBO COMPLETO (DESTAQUE MÁXIMO) -->
+  <!-- SEÇÃO 6: OFERTA DO COMBO COMPLETO -->
   <section id="combo" class="py-16 bg-slate-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      
       <div class="relative bg-white rounded-3xl border-2 border-brand-royalBlue shadow-2xl p-8 sm:p-12 overflow-hidden">
         
-        <!-- Faixa de Destaque -->
         <div class="absolute top-0 right-0 bg-brand-emerald text-white text-xs font-extrabold uppercase tracking-wider py-1.5 px-6 rounded-bl-2xl">
           Melhor Custo-Benefício
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <!-- Lado Esquerdo: Benefícios do Pacote -->
           <div class="lg:col-span-7 space-y-4">
             <span class="text-brand-emerald font-extrabold text-xs uppercase tracking-widest">Pacote Completo SED-MS</span>
             <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-royalBlue leading-tight">
               Leve TODOS os 6 E-books com Super Desconto
             </h2>
             <p class="text-sm text-gray-600 leading-relaxed">
-              Comprando individualmente, os 6 e-books somariam <strong>R$ 71,40</strong>. Garanta a preparação completa com todos os temas pedagógicos e a legislação de MS com economia imediata.
+              Comprando individualmente, os 6 e-books somariam <strong>R$ 71,40</strong>. Garanta a preparação completa com todos os temas pedagógicos e a legislação de MS com máxima economia.
             </p>
 
             <ul class="space-y-2.5 pt-2 text-sm text-gray-700">
               <li class="flex items-center gap-2.5">
                 <i class="fas fa-check-circle text-brand-emerald text-base"></i>
-                <span>E-book BNCC e Marcos Curriculares</span>
+                <span>E-book BNCC, Legislação e Currículo Regional</span>
               </li>
               <li class="flex items-center gap-2.5">
                 <i class="fas fa-check-circle text-brand-emerald text-base"></i>
-                <span>E-book FUNDEB Esquematizado</span>
+                <span>E-book FUNDEB - O Novo FUNDEB</span>
               </li>
               <li class="flex items-center gap-2.5">
                 <i class="fas fa-check-circle text-brand-emerald text-base"></i>
@@ -648,11 +539,11 @@
               </li>
               <li class="flex items-center gap-2.5">
                 <i class="fas fa-check-circle text-brand-emerald text-base"></i>
-                <span>E-book Raças e Etnias do Mato Grosso do Sul</span>
+                <span>E-book Educação Étnico-Racial e PRO-ERER-MS</span>
               </li>
               <li class="flex items-center gap-2.5">
                 <i class="fas fa-check-circle text-brand-emerald text-base"></i>
-                <span>E-book Currículo de Referência do MS</span>
+                <span>E-book Currículo de Referência de MS</span>
               </li>
               <li class="flex items-center gap-2.5">
                 <i class="fas fa-check-circle text-brand-emerald text-base"></i>
@@ -661,31 +552,19 @@
             </ul>
           </div>
 
-          <!-- Lado Direito: Box de Preço e Botões -->
           <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center space-y-4">
             <div class="text-xs text-gray-500 uppercase font-semibold">Valor Total Original</div>
             <div class="text-gray-400 line-through text-lg font-bold">De R$ 80,00</div>
-            
             <div class="space-y-1">
               <span class="text-xs font-bold text-brand-emerald uppercase tracking-wide">Por apenas</span>
               <div class="text-4xl sm:text-5xl font-extrabold text-brand-royalBlue font-serif">R$ 39,90</div>
               <span class="text-xs text-gray-500 block">Pagamento Único • Acesso Imediato</span>
             </div>
-
-            <!-- Botão Principal Kiwify Combo -->
-            <a href="https://pay.kiwify.com.br/SEU_LINK_COMBO_COMPLETO" 
-               target="_blank"
-               class="w-full block py-4 bg-brand-emerald hover:bg-brand-darkEmerald text-white font-extrabold text-base pill-btn shadow-lg shadow-emerald-700/20">
+            <a href="https://pay.kiwify.com.br/0SB3Kan" target="_blank" rel="noopener noreferrer" class="w-full block py-4 bg-brand-emerald hover:bg-brand-darkEmerald text-white font-extrabold text-base pill-btn shadow-lg shadow-emerald-700/20">
               Comprar Pacote Completo
             </a>
-
-            <!-- Opção WhatsApp PIX Direto -->
-            <a href="https://wa.me/5567993213682?text=Ol%C3%A1!%20Quero%20comprar%20o%20pacote%20completo%20de%20e-books%20por%20R%24%2039%2C90%20via%20WhatsApp." 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="w-full flex items-center justify-center gap-2 py-3 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 text-xs font-bold pill-btn">
-              <i class="fab fa-whatsapp text-brand-emerald text-base"></i>
-              <span>Comprar via PIX no WhatsApp</span>
+            <a href="https://wa.me/5567993213682?text=Ol%C3%A1!%20Quero%20comprar%20o%20pacote%20completo%20de%20e-books%20por%20R%24%2039%2C90%20via%20WhatsApp." target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 py-3 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 text-xs font-bold pill-btn">
+              <i class="fab fa-whatsapp text-brand-emerald text-base"></i> Comprar via PIX no WhatsApp
             </a>
 
             <!-- Meios de Pagamento -->
@@ -699,13 +578,9 @@
                 <span class="flex items-center gap-1 font-semibold"><i class="fas fa-money-check-alt text-brand-royalBlue"></i> Débito</span>
               </div>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   </section>
 
@@ -713,18 +588,15 @@
   <section class="py-12 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-gradient-to-r from-blue-50 to-emerald-50 border border-blue-200/60 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-        
         <div class="w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center text-3xl text-brand-royalBlue flex-shrink-0 border-2 border-emerald-400">
           <i class="fas fa-shield-alt text-brand-emerald"></i>
         </div>
-
         <div class="space-y-1">
           <h3 class="text-xl font-serif font-bold text-brand-royalBlue">Garantia Incondicional de 7 Dias</h3>
           <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-            Risco zero para você. Acesse os materiais, leia os resumos e avalie a didática. Se achar que o conteúdo não agregou valor aos seus estudos, basta solicitar o reembolso na própria plataforma ou via WhatsApp e devolveremos 100% do valor pago.
+            Risco zero para você. Acesse os materiais, leia os resumos e avalie a didática. Se achar que o conteúdo não agregou valor aos seus estudos, basta solicitar o reembolso na própria plataforma Kiwify ou via WhatsApp e devolveremos 100% do valor pago.
           </p>
         </div>
-
       </div>
     </div>
   </section>
@@ -732,7 +604,6 @@
   <!-- SEÇÃO 8: PERGUNTAS FREQUENTES (FAQ) -->
   <section id="faq" class="py-16 bg-slate-50 border-t border-slate-200/70">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      
       <div class="text-center mb-12">
         <span class="text-brand-emerald font-bold text-xs uppercase tracking-widest">Tire Suas Dúvidas</span>
         <h2 class="text-3xl font-serif font-bold text-brand-royalBlue mt-1">Perguntas Frequentes</h2>
@@ -740,7 +611,6 @@
       </div>
 
       <div class="space-y-4" id="faq-container">
-        
         <!-- Pergunta 1 -->
         <div class="faq-card bg-white rounded-2xl border border-slate-200 p-5 shadow-sm cursor-pointer transition">
           <div class="flex items-center justify-between font-bold text-gray-900 text-sm sm:text-base">
@@ -781,7 +651,7 @@
             <i class="fas fa-chevron-down text-brand-royalBlue faq-chevron transition-transform duration-300"></i>
           </div>
           <div class="faq-content text-xs sm:text-sm text-gray-600 leading-relaxed pt-3">
-            Sim! Temos e-books dedicados exclusivamente ao Currículo de Referência de Mato Grosso do Sul, ao Programa Raças e Etnias do MS e ao Plano Estadual de Educação (PEE-MS), alinhados com a realidade da SED-MS.
+            Sim! Temos e-books dedicados exclusivamente ao Currículo de Referência de Mato Grosso do Sul, à Educação Étnico-Racial e PRO-ERER-MS, e ao Plano Estadual de Educação (PEE-MS), totalmente alinhados com as exigências da SED-MS.
           </div>
         </div>
 
@@ -795,7 +665,6 @@
             Basta clicar no botão abaixo ou no ícone flutuante do WhatsApp para conversar diretamente pelo suporte. Estamos prontos para responder qualquer dúvida sobre os materiais.
           </div>
         </div>
-
       </div>
 
       <!-- CTA de Suporte Direto -->
@@ -808,56 +677,39 @@
           <span>Não encontrou sua dúvida? Chamar no WhatsApp</span>
         </a>
       </div>
-
     </div>
   </section>
 
-  <!-- SEÇÃO 9: RODAPÉ INSTITUCIONAL -->
+  <!-- SEÇÃO 9: RODAPÉ -->
   <footer class="bg-brand-royalBlue text-white py-12 border-t border-blue-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pb-8 border-b border-blue-800/60">
-        
-        <!-- Identificação da Marca -->
-        <div class="md:col-span-6 text-center md:text-left space-y-2">
-          <div class="text-2xl font-serif font-bold">
-            <span>Professor Concurseiro</span>
-            <span class="text-emerald-400 ml-1.5">MS</span>
-          </div>
-          <p class="text-xs text-blue-200 max-w-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-blue-800/60">
+        <div>
+          <div class="text-2xl font-serif font-bold">Professor Concurseiro <span class="text-emerald-400">MS</span></div>
+          <p class="text-xs text-blue-200 max-w-sm mt-1">
             Materiais estratégicos e esquematizados para professores que buscam a estabilidade na rede estadual de ensino de Mato Grosso do Sul (SED-MS).
           </p>
         </div>
-
-        <!-- Links Rápidos e Atendimento -->
-        <div class="md:col-span-6 flex flex-col sm:flex-row items-center justify-center md:justify-end gap-6 text-xs text-blue-200">
+        <div class="flex flex-wrap justify-center gap-6 text-xs text-blue-200">
           <a href="#concurso" class="hover:text-white transition">Status do Concurso</a>
+          <a href="#sobre" class="hover:text-white transition">Metodologia</a>
           <a href="#ebooks" class="hover:text-white transition">E-BOOKS</a>
           <a href="#combo" class="hover:text-white transition">Combo Completo</a>
-          <a href="https://wa.me/5567993213682" target="_blank" class="hover:text-white transition font-bold text-emerald-400 flex items-center gap-1.5">
-            <i class="fab fa-whatsapp text-sm"></i> (67) 99321-3682
-          </a>
+          <a href="https://wa.me/5567993213682" target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-bold"><i class="fab fa-whatsapp"></i> (67) 99321-3682</a>
         </div>
-
       </div>
-
-      <!-- Termos Legais -->
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left text-[11px] text-blue-300/80 gap-4">
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-blue-300/80 gap-4">
         <p>© 2026 Professor Concurseiro MS. Todos os direitos reservados.</p>
-        <p>Este site é um preparatório independente e não possui vínculo institucional com a SED-MS.</p>
+        <p>Preparatório independente, sem vínculo institucional com a SED-MS.</p>
       </div>
-
     </div>
   </footer>
 
   <!-- BOTÃO FIXO / FLUTUANTE DO WHATSAPP -->
   <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-    
-    <!-- Tooltip Animado (visível em desktop) -->
     <div class="hidden sm:flex items-center bg-white text-gray-800 px-3.5 py-2 rounded-2xl shadow-xl border border-gray-100 text-xs font-bold animate-bounce">
       <span>Dúvidas? Fale comigo agora!</span>
     </div>
-
-    <!-- Botão Circular Verde -->
     <a href="https://wa.me/5567993213682?text=Ol%C3%A1!%20Estou%20navegando%20no%20site%20e%20preciso%20de%20ajuda." 
        target="_blank" 
        rel="noopener noreferrer"
@@ -869,149 +721,13 @@
 
   <!-- SCRIPT DE INTERAÇÃO DO FAQ -->
   <script>
-    // Configuração do banco de dados IndexedDB para armazenamento persistente da imagem
-    const DB_NAME = 'ProfessorConcurseiroHeroDB';
-    const DB_VERSION = 1;
-    const STORE_NAME = 'assets';
-
-    function openDB() {
-      return new Promise((resolve, reject) => {
-        const req = indexedDB.open(DB_NAME, DB_VERSION);
-        req.onupgradeneeded = (e) => {
-          const db = e.target.result;
-          if (!db.objectStoreNames.contains(STORE_NAME)) {
-            db.createObjectStore(STORE_NAME);
-          }
-        };
-        req.onsuccess = () => resolve(req.result);
-        req.onerror = () => reject(req.error);
-      });
-    }
-
-    async function storeHeroImageBlob(blob) {
-      try {
-        const db = await openDB();
-        return new Promise((resolve, reject) => {
-          const tx = db.transaction(STORE_NAME, 'readwrite');
-          const store = tx.objectStore(STORE_NAME);
-          store.put(blob, 'hero-banner');
-          tx.oncomplete = () => resolve(true);
-          tx.onerror = () => reject(tx.error);
-        });
-      } catch (err) {
-        console.warn('Erro ao salvar no IndexedDB:', err);
-        return false;
-      }
-    }
-
-    async function retrieveStoredHeroImage() {
-      try {
-        const db = await openDB();
-        return new Promise((resolve) => {
-          const tx = db.transaction(STORE_NAME, 'readonly');
-          const store = tx.objectStore(STORE_NAME);
-          const req = store.get('hero-banner');
-          req.onsuccess = () => resolve(req.result || null);
-          req.onerror = () => resolve(null);
-        });
-      } catch (err) {
-        return null;
-      }
-    }
-
-    function showSaveToast() {
-      const toast = document.getElementById('save-toast');
-      if (toast) {
-        toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
-        setTimeout(() => {
-          toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
-        }, 3500);
-      }
-    }
-
-    async function handleHeroUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const heroImg = document.getElementById('hero-img');
-      const changeBtn = document.getElementById('hero-change-btn');
-      const helper = document.getElementById('hero-upload-helper');
-
-      // Aplica a imagem na tela imediatamente
-      const objectUrl = URL.createObjectURL(file);
-      if (heroImg) {
-        heroImg.src = objectUrl;
-        heroImg.dataset.customLoaded = 'true';
-      }
-
-      if (helper) helper.classList.add('hidden');
-      if (changeBtn) changeBtn.classList.remove('hidden');
-
-      // Salva de forma permanente no IndexedDB do navegador
-      await storeHeroImageBlob(file);
-      showSaveToast();
-    }
-
-    async function checkAndApplyStoredHero() {
-      const storedBlob = await retrieveStoredHeroImage();
-      const heroImg = document.getElementById('hero-img');
-      const changeBtn = document.getElementById('hero-change-btn');
-      const helper = document.getElementById('hero-upload-helper');
-
-      if (storedBlob && heroImg) {
-        heroImg.src = URL.createObjectURL(storedBlob);
-        heroImg.dataset.customLoaded = 'true';
-        if (helper) helper.classList.add('hidden');
-        if (changeBtn) changeBtn.classList.remove('hidden');
-        return true;
-      }
-      return false;
-    }
-
-    async function handleHeroImageError(img) {
-      // Se já foi carregada uma imagem personalizada salva, não executa o fallback
-      if (img.dataset.customLoaded === 'true') return;
-
-      // Verifica se existe imagem armazenada no banco local
-      const applied = await checkAndApplyStoredHero();
-      if (applied) return;
-
-      // Tenta caminhos alternativos
-      if (!img.dataset.triedJpg) {
-        img.dataset.triedJpg = 'true';
-        img.src = 'hero-professor-concurseiro.jpg';
-        return;
-      }
-      if (!img.dataset.triedHeroPng) {
-        img.dataset.triedHeroPng = 'true';
-        img.src = 'hero.png';
-        return;
-      }
-
-      // Se ainda não houver imagem, exibe banner indicativo com botão de upload
-      img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 700' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='%23F8FAFC'/%3E%3Ctext x='50%25' y='46%25' text-anchor='middle' font-family='sans-serif' font-size='38' font-weight='800' fill='%230F4C81'%3EProfessor Concurseiro MS%3C/text%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-family='sans-serif' font-size='20' font-weight='600' fill='%230B7B56'%3ECarregue sua imagem da Hero abaixo para salvar no preview%3C/text%3E%3C/svg%3E";
-      const helper = document.getElementById('hero-upload-helper');
-      if (helper) helper.classList.remove('hidden');
-    }
-
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Tenta recuperar imagem previamente salva logo ao carregar a página
-      await checkAndApplyStoredHero();
-
-      // Lógica do FAQ
+    document.addEventListener('DOMContentLoaded', () => {
       const faqCards = document.querySelectorAll('.faq-card');
-
       faqCards.forEach(card => {
         card.addEventListener('click', () => {
-          const isCurrentlyOpen = card.classList.contains('open');
-
-          // Fecha todas as outras perguntas abertas
+          const isOpen = card.classList.contains('open');
           faqCards.forEach(c => c.classList.remove('open'));
-
-          // Se a pergunta clicada não estava aberta, abre ela
-          if (!isCurrentlyOpen) {
-            card.classList.add('open');
-          }
+          if (!isOpen) card.classList.add('open');
         });
       });
     });
